@@ -1,6 +1,8 @@
 Assignment 0
 
+    
 Problem 1:
+
     Write a C program that reads text from a file and prints on the terminal each input line, preceded by the line
     number. The output will look like -
         1     This is the first trial line in the file,
@@ -12,6 +14,7 @@ Problem 1:
     comfortable with the formatted input and output functions of C.
 
 Problem 2:
+
     Write a program that takes from the user the name of a file and a "field-number", and then reads that file and
     for each line in that file prints on the terminal word at position "field-number". For example if there are the
     following lines in the specified file -
@@ -31,6 +34,7 @@ Problem 2:
     After this exercise you should be able to deal with individual words in a text file.
 
 Problem 3:
+
     Write a C program that reads the names (as character strings of length upto 20 bytes) and corresponsing 
     roll-numbers (as integers) of 10 students from the user and stores them in a file whose name is specified 
     by the user-
@@ -40,13 +44,15 @@ Problem 3:
 
         After running the program check the size of the file created using ls -l command. Also see the content 
         of the binary file using the command
-        
+
         od -c filename.
 
         After this exercise you should be clear about the difference between a text file and a binary file.
 
 Problem 4:
+
     Write a C program that works like the od program of LINUX (UNIX).
 
 Problem 5:
+
     Write a C program that works like the strings program of LINUX (UNIX).
