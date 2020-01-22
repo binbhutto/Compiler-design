@@ -1,6 +1,8 @@
 
 Assignment 0
 
+    Assignment 0 contains total 5 problems to brush up c skills. Mainly focused on file handling.
+
 Problem 1:
     Write a C program that reads text from a file and prints on the terminal each input line, preceded by the line
     number. The output will look like -
