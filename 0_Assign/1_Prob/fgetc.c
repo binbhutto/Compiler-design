@@ -33,7 +33,7 @@ void print_on_terminal_after_read (char *filename) {
 	 * Adding the serial numbers of lines as prefix 
 	 */
 	printf("\n");
-	while((letter = getc(fptr)) != EOF) {
+	while((letter = fgetc(fptr)) != EOF) {
 		if(count == 1) {
 			printf("%d\t%c",count,letter);
 			count++;
