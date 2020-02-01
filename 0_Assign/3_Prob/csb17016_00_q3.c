@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 	char string[20];
 	int rollNo;
 	int itemCount_name;
-	for(int students = 1; students <= 20; students++) {
+	for(int students = 1; students <= 2; students++) {
 
 		printf("Student %d:\n\t\tName:\t\t",students);
 		scanf(" %[^\n]s",string);
