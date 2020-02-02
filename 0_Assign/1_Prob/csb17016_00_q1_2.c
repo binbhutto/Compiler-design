@@ -1,5 +1,7 @@
 /*
  * Copyright (c) Adil Bin Bhutto. All rights reserved.
+ *
+ * Description: print file using fgets.
  */
 
 #include<stdbool.h>
@@ -10,6 +12,7 @@
 void print_on_terminal_after_read(char *filename);
 void check_validity_of_main_arguments(int count);
 int isContain_newlineCharacter(char *string);
+
 int main(int argc, char *argv[]) {
 
 	check_validity_of_main_arguments(argc);	
@@ -17,6 +20,7 @@ int main(int argc, char *argv[]) {
 
 	return 0;
 }
+
 void check_validity_of_main_arguments(int count) {
 	if(count < 2) {
 		printf("\nPlease provide a valid command\n\t\t Suggested format: $ <a.out> <file.txt>\n\n");

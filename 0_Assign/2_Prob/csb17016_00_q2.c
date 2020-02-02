@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) Adil Bin Bhutto. All rights reserved.
+ *
+ * Description: Prints the specific numbered word as per user's repquest from each line.
+ */
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
@@ -29,16 +34,20 @@ void printSpecified_word_fromEachLine(char *filename, int wordNo) {
 		printf("Something went wrong while opening the file !\n\n");
 		exit(1);
 	}
+	/*
+	 * previouseSpace acknowledges new word encounter
+	 * printSuccess refers to any successful print of expected word print else helps to print NULL 
+	 * count keeps track of current word number in line while reading
+	 */
 	
 	int previousSpace = false;
 	int printSuccess = false;
 	int count = 1;
 	char letter;
+
 	while((letter = fgetc(fptr)) != EOF) {
 		if(letter == ' ') {
-			if(previousSpace == false) {
-				previousSpace = true;
-			}
+			previousSpace = true;
 		} else if(letter == '\n') {
 			previousSpace = false;
 			if(printSuccess == false) {

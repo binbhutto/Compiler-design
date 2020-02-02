@@ -1,6 +1,13 @@
+/*
+ * Copyright (c) Adil Bin Bhutto. All rights reserved.
+ *
+ * Description: 'strings' like program from linux which tries to all the strings from a file
+ * 				and string length must be greater than 4
+ */
 #include<stdio.h>
 #include<stdbool.h>
 #include<ctype.h>
+#include<stdlib.h>
 #define CHARACTER_COUNT 4
 
 char queue[CHARACTER_COUNT];
@@ -8,11 +15,28 @@ int front = 0,rear = 0, capacity = CHARACTER_COUNT;
 int enqueue(char insert);
 int dequeue();
 
+void checkValidity_of_mainArguments(int count);
+void printStrings(FILE *fptr);
+
 int main(int argc, char *argv[]) {
 
-	char letter;
-	FILE *fptr = fopen(argv[1],"r");
+	checkValidity_of_mainArguments(argc);
 
+	FILE *fptr = fopen(argv[1],"r");
+	printStrings(fptr);
+
+	return 0;
+}
+
+void checkValidity_of_mainArguments(int count) {
+	if(count < 2) {
+		printf("\nprovide a valid command\n\t\t Suggested format: $./<a.out> <filename>");
+		exit(1);
+	}
+}
+
+void printStrings(FILE *fptr) {
+	char letter;
 	int isPreviousCharacter_ascii = false;
 	int charPrintable_count = 0;
 
@@ -23,10 +47,9 @@ int main(int argc, char *argv[]) {
 		}
 
 		if(isprint(letter)) {
-			//printf("\nchar value is : %d\n", (int)letter);
 
-			if(charPrintable_count >= 3) {
-				if(charPrintable_count == 3) {
+			if(charPrintable_count >= (CHARACTER_COUNT - 1)) {
+				if(charPrintable_count == (CHARACTER_COUNT - 1)) {
 					for(int i = 0; i < 4; i++){
 						printf("%c",dequeue());
 					}
@@ -51,9 +74,8 @@ int main(int argc, char *argv[]) {
 		}
 		
 	}
-
-	return 0;
 }
+
 
 int enqueue(char insert) {
 	if(rear == capacity) {

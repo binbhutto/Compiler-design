@@ -1,5 +1,7 @@
 /*
  * Copyright (c) Adil Bin Bhutto. All rights reserved.
+ *
+ * Description: print file using fgetc.
  */
 
 #include<stdlib.h>
