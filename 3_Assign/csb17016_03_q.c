@@ -1,8 +1,8 @@
 /* 
  * Grammar:
  * 			D -> w(C)bSe							Non-Terminals:	D, Starting Symbol
- * 			C -> i x E | i y E									C, Condition 
- * 			S -> i = E; | S; i = E;									S, Statement
+ * 			C -> i x E | i y E										C, Condition 
+ * 			S -> i = E; | i = E;S									S, Statement
  * 			E -> E + T | T 											E, Arithmatic Expression
  * 			T -> T * F | F 											T, Intermediate Term
  * 			F -> (E) | i | n 										F, Intermediate Term
@@ -21,7 +21,22 @@
  *																	-, subtraction
  *																	(, open brace
  *																	), close brace
- *																	
+ *	Operator Precedence Table:
+ *		  w b e x y i = ; n + * - ( )
+ *	  	w                         =
+ *		b     =     <
+ *		e
+ *		x           <     < < <   < >
+ *		y           <     < < <   < >       
+ *		i       = =   = >   > >     >
+ *		=           <   = < < <   <
+ *		;     >     >
+ *		n               >   > >     >
+ *		+           <   > < > <   < >
+ *		*           <   > < > >   < >
+ *		-           <               =
+ *		(   =       <     < < <   <
+ *		)               >   > >     >													
  */
 
 #include<stdio.h>
