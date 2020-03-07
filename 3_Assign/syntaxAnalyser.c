@@ -1,7 +1,7 @@
 /* 
  * Grammar:
  * 			D -> w(C)bSe							Non-Terminals:	D, Starting Symbol
- * 			C -> i == E | i != E									C, Condition 
+ * 			C -> i x E | i y E									C, Condition 
  * 			S -> i = E; | S; i = E;									S, Statement
  * 			E -> E + T | T 											E, Arithmatic Expression
  * 			T -> T * F | F 											T, Intermediate Term
@@ -10,10 +10,18 @@
  *														Termianls:	w, while
  *																	b, begin
  *																	e, end
- *																	i, identifier
- *																	n, number
  *																	x, ==
  *																	y, !=
+ *																	i, identifier
+ *																	=, assignment
+ *																	;, semicolon
+ *																	n, number
+ *																	+, addition
+ *																	*, multiplication
+ *																	-, subtraction
+ *																	(, open brace
+ *																	), close brace
+ *																	
  */
 
 #include<stdio.h>
