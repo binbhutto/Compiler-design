@@ -2,9 +2,10 @@
 #include "lex.h"
 
 extern int yylex();
-extern char* yytext;
+extern FILE *yyin;
 
 int main(void) {
+	yyin = fopen("csb17016_01_q1_prog.c", "r");
 	int token;
 	char *token_arr[] = {
 						NULL,
@@ -23,6 +24,7 @@ int main(void) {
 	while(token) {
 		printf("Vlaue: %d\t%s\n", token, token_arr[token]);
 		token = yylex();
+
 	}
 
 }
