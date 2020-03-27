@@ -1,5 +1,5 @@
 %{
-#include "lex.h"
+#include "CSB17016_lex.h"
 %}
 
 %%
@@ -7,7 +7,6 @@
 "begin"					{ return TOK_BEGIN; }
 "end"					{ return TOK_END; }
 "+"						{ return TOK_ADD; }
-"-"						{ return TOK_SUB; }
 "*"						{ return TOK_MULT; }
 [a-zA-Z][_a-zA-Z0-9]*	{ return TOK_IDENTIFIER; }
 [0-9]+					{ return TOK_NUMBER; }
@@ -18,7 +17,7 @@
 ")"						{ return TOK_CLOSE_PARAN;}
 ";"						{ return TOK_SEMICOLON;	 }
 [ \t\n]					{ ; }
-"$"					{return TOK_EOF; }
+"$"						{ return TOK_EOF; }
 .						{ return TOK_INVALID; }
 %%
 

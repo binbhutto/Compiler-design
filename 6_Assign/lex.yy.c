@@ -371,10 +371,10 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[35] =
     {   0,
-        0,    0,   18,   16,   15,   15,   16,   12,   13,    6,
-        4,    5,    8,   14,    9,    7,    7,    7,    7,   11,
-        8,   10,    7,    7,    7,    7,    7,    3,    7,    7,
-        7,    2,    1,    0
+        0,    0,   18,   16,   14,   14,   16,   15,   11,   12,
+        5,    4,    7,   13,    8,    6,    6,    6,    6,   10,
+        7,    9,    6,    6,    6,    6,    6,    3,    6,    6,
+        6,    2,    1,    0
     } ;
 
 static yyconst flex_int32_t yy_ec[256] =
@@ -382,8 +382,8 @@ static yyconst flex_int32_t yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    2,    4,    1,    1,    1,    1,    1,    1,    5,
-        6,    7,    8,    1,    9,    1,    1,   10,   10,   10,
+        1,    2,    4,    1,    1,    5,    1,    1,    1,    6,
+        7,    8,    9,    1,    1,    1,    1,   10,   10,   10,
        10,   10,   10,   10,   10,   10,   10,    1,   11,    1,
        12,    1,    1,    1,   13,   13,   13,   13,   13,   13,
        13,   13,   13,   13,   13,   13,   13,   13,   13,   13,
@@ -468,9 +468,9 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "lex.l"
-#line 2 "lex.l"
-#include "lex.h"
+#line 1 "CSB17016_lex.l"
+#line 2 "CSB17016_lex.l"
+#include "CSB17016_lex.h"
 #line 475 "lex.yy.c"
 
 #define INITIAL 0
@@ -653,7 +653,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 5 "lex.l"
+#line 5 "CSB17016_lex.l"
 
 #line 659 "lex.yy.c"
 
@@ -740,95 +740,93 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 6 "lex.l"
+#line 6 "CSB17016_lex.l"
 { return TOK_WHILE; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 7 "lex.l"
+#line 7 "CSB17016_lex.l"
 { return TOK_BEGIN; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 8 "lex.l"
+#line 8 "CSB17016_lex.l"
 { return TOK_END; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 9 "lex.l"
+#line 9 "CSB17016_lex.l"
 { return TOK_ADD; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 10 "lex.l"
-{ return TOK_SUB; }
+#line 10 "CSB17016_lex.l"
+{ return TOK_MULT; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 11 "lex.l"
-{ return TOK_MULT; }
+#line 11 "CSB17016_lex.l"
+{ return TOK_IDENTIFIER; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 12 "lex.l"
-{ return TOK_IDENTIFIER; }
+#line 12 "CSB17016_lex.l"
+{ return TOK_NUMBER; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 13 "lex.l"
-{ return TOK_NUMBER; }
+#line 13 "CSB17016_lex.l"
+{ return TOK_ASSIGNMENT; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 14 "lex.l"
-{ return TOK_ASSIGNMENT; }
+#line 14 "CSB17016_lex.l"
+{ return TOK_COMP_EQ; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 15 "lex.l"
-{ return TOK_COMP_EQ; }
+#line 15 "CSB17016_lex.l"
+{ return TOK_COMP_NEQ; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 16 "lex.l"
-{ return TOK_COMP_NEQ; }
+#line 16 "CSB17016_lex.l"
+{ return TOK_OPEN_PARAN; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 17 "lex.l"
-{ return TOK_OPEN_PARAN; }
+#line 17 "CSB17016_lex.l"
+{ return TOK_CLOSE_PARAN;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 18 "lex.l"
-{ return TOK_CLOSE_PARAN;}
-	YY_BREAK
-case 14:
-YY_RULE_SETUP
-#line 19 "lex.l"
+#line 18 "CSB17016_lex.l"
 { return TOK_SEMICOLON;	 }
 	YY_BREAK
-case 15:
-/* rule 15 can match eol */
+case 14:
+/* rule 14 can match eol */
 YY_RULE_SETUP
-#line 20 "lex.l"
+#line 19 "CSB17016_lex.l"
 { ; }
 	YY_BREAK
-case YY_STATE_EOF(INITIAL):
-#line 21 "lex.l"
-{return TOK_EOF; }
+case 15:
+YY_RULE_SETUP
+#line 20 "CSB17016_lex.l"
+{ return TOK_EOF; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 22 "lex.l"
+#line 21 "CSB17016_lex.l"
 { return TOK_INVALID; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 23 "lex.l"
+#line 22 "CSB17016_lex.l"
 ECHO;
 	YY_BREAK
-#line 832 "lex.yy.c"
+#line 828 "lex.yy.c"
+case YY_STATE_EOF(INITIAL):
+	yyterminate();
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1823,7 +1821,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 23 "lex.l"
+#line 22 "CSB17016_lex.l"
 
 
 

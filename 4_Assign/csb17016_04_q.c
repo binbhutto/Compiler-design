@@ -26,7 +26,7 @@
  *																	-, subtraction
  *																	(, open brace
  *																	), close brace
- *														      epsilon, Epsilon
+ *														      		epsilon, Epsilon
  *
  */
 #include <stdio.h>
@@ -55,10 +55,13 @@ int main(int argc, char *argv[]) {
 	check_validity_of_main_arguments(argc);
 	yyin = fopen(argv[1],"r");
 	token = yylex();
-	D();
-	if(token == '$') {
-		printf("Parsing Successful\n");
+	while(token = yylex()) {
+		print("%c",token);
 	}
+	// D();
+	// if(token == '$') {
+	// 	printf("Parsing Successful\n");
+	// }
 }
 void check_validity_of_main_arguments(int count) {
 	if(count < 2) {

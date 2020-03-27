@@ -1,25 +1,35 @@
-//code@raajtilaksarma
+/*
+ * Copyright (c) Adil Bin Bhutto. All rights reserved.
+ * Description: 
+ */
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include "CSB17016_lex.h"
+
+#define STK_SIZE 300
+
+extern int yylex();
+extern FILE *yyin;
+extern char *yytext;
 
 int noT,noNT;
-char STK[20];
+char STK[STK_SIZE];
 int TOP = -1;
 typedef struct rule
 {
 	char lhs;
-	char rhs[10];
+	char rhs[20];
 	int num;
 }rule;
-struct rule rules[15];
+struct rule rules[30];
 typedef struct frst
 {
 	char c;
 	char set[30];
 	int len;
 }frst;
-struct frst firsts[10];
+struct frst firsts[30];
 typedef struct follow
 {
 	char c;
@@ -27,13 +37,14 @@ typedef struct follow
 	int len;
 	int visited;
 }follow;
-struct follow follows[10];
+struct follow follows[30];
 int isNonTerminal(char c,int noRules)
 {	
-	int i=0;
-	for(i;i<noRules;i++)
+	for(int i=0;i<noRules;i++)
+	{
 		if(rules[i].lhs==c)
 		return 1;
+	}
 	return 0;
 }
 void push(char c)
@@ -43,6 +54,12 @@ void push(char c)
 void pop()
 {
 	STK[TOP--]='\0';
+}
+void check_validity_of_main_arguments(int count) {
+	if(count < 2) {
+		printf("\nPlease provide a valid command\n\t\t Suggested format: $ <a.out> <file.c>\n\n");
+		exit(0);
+	}
 }
 void printStack()
 {
@@ -59,8 +76,10 @@ int inarr(char* arr,char c,int noRules)
 {
 	int i;
 	for(i=0;i<noRules;i++)
+	{
 		if(arr[i]==c)
 			return 1;
+	}
 	return 0;
 }
 int isInFirSet(char NT, char ch,int noNT)
@@ -68,12 +87,15 @@ int isInFirSet(char NT, char ch,int noNT)
 	int i=0;
 	int j=0;
 	for(i=0;i<noNT;i++)
+	{
 		if(firsts[i].c==NT)
 			break;
-	for(j=0;j<=firsts[i].len;j++)		
-	if(firsts[i].set[j]==ch)
+	}
+	for(j=0;j<=firsts[i].len;j++)
+	{		
+		if(firsts[i].set[j]==ch)
 			return 1;
-	
+	}
 	return 0;
 }
 int isInFolSet(char NT, char ch,int noNT)
@@ -81,12 +103,15 @@ int isInFolSet(char NT, char ch,int noNT)
 	int i=0;
 	int j=0;
 	for(i=0;i<noNT;i++)
+	{
 		if(follows[i].c==NT)
 			break;
-	for(j=0;j<=follows[i].len;j++)		
+	}
+	for(j=0;j<=follows[i].len;j++)
+	{		
 		if(follows[i].set[j]==ch)
 				return 1;
-	
+	}
 	return 0;
 }
 
@@ -95,11 +120,15 @@ void copyfirst(char NT1,char NT2,int noNT)
 	int i,j;
 	char ch;
 	for(i=0;i<noNT;i++)
+	{
 		if(firsts[i].c==NT1)
 		break;
+	}
 	for(j=0;j<noNT;j++)
+	{
 		if(firsts[j].c==NT2)
 			break;
+	}
 	int ind;
 	int k;
 	for(k=0;k<firsts[j].len;k++)
@@ -120,11 +149,15 @@ void copyfollow(char NT1,char NT2,int noNT)
 	int i,j;
 	char ch;
 	for(i=0;i<noNT;i++)
+	{
 		if(follows[i].c==NT1)
 		break;
+	}
 	for(j=0;j<noNT;j++)
+	{
 		if(follows[j].c==NT2)
 		break;
+	}
 	int ind;
 	int k;
 	for(k=0;k<follows[j].len;k++)
@@ -144,11 +177,15 @@ void copyfollowfirst(char NT1,char NT2,int noNT)
 	int i,j;
 	char ch;
 	for(i=0;i<noNT;i++)
+	{
 		if(follows[i].c==NT1)
 		break;
+	}
 	for(j=0;j<noNT;j++)
+	{
 		if(firsts[j].c==NT2)
 		break;
+	}
 	int ind;
 	int k;
 	for(k=0;k<firsts[j].len;k++)
@@ -169,11 +206,15 @@ void copyfollowfollow(char NT1,char NT2,int noNT)
 	int i,j;
 	char ch;
 	for(i=0;i<noNT;i++)
+	{
 		if(follows[i].c==NT1)
 		break;
+	}
 	for(j=0;j<noNT;j++)
+	{
 		if(follows[j].c==NT2)
 		break;
+	}
 	int ind;
 	int k;
 	for(k=0;k<follows[j].len;k++)
@@ -203,8 +244,10 @@ void add2first(char NT1,int noRules,int noNT,int rhslen,int ruleno)
 			{
 				//add that terminal to NT1
 				for(j=0;j<noNT;j++)
+				{
 					if(firsts[j].c==NT1)
 						break;
+				}
 				if(!isInFirSet(NT1,NT2,noNT))			
 				{
 					index = firsts[j].len;
@@ -239,8 +282,10 @@ void add2first(char NT1,int noRules,int noNT,int rhslen,int ruleno)
 				int m;
 				int index;
 				for(m=0;m<noNT;m++)
+				{
 					if(firsts[m].c==NT1)
 						break;
+				}
 				if(!isInFirSet(NT1,'e',noNT))			
 				{
 					index = firsts[m].len;
@@ -263,8 +308,10 @@ void add2follow(char ch,char NT1,int noNT)
 {
 	int j,index;
 	for(j=0;j<noNT;j++)
+	{
 		if(follows[j].c==NT1)
 			break;
+	}
 	if(!isInFolSet(NT1,ch,noNT))			
 	{
 		index = follows[j].len;
@@ -295,19 +342,24 @@ int charIndexNT(char c,char* nonTerm,int noNT)
 		if(c==nonTerm[i])
 			return i;
 	}
+	return -2;
 }
 void printTable(int TABLE[noNT][noT],char* term,char *nonTerm)
 {
-	printf("\nParsing Table\n\n");
+	printf("\nParsing Table:\n");
 	int i,j;
 	for(i=0;i<noT;i++)
+	{
 		printf("\t%c",term[i]);
+	}
 	printf("\n");
 	for(i=0;i<noNT;i++)
 	{
 		printf("%c\t",nonTerm[i]);
 		for(j=0;j<noT;j++)
+		{
 			printf("%d\t",TABLE[i][j]);
+		}
 		printf("\n");
 	}
 }
@@ -316,6 +368,7 @@ void findfollow(int NT1,int noRules,int noNT)
 {
 	int i,j,k,x,m;
 	for(i=0;i<noNT;i++)
+	{
 		if(follows[i].c==NT1)
 		{
 			if(follows[i].visited==1)
@@ -329,6 +382,7 @@ void findfollow(int NT1,int noRules,int noNT)
 			}
 			
 		}
+	}
 	for(j=0;j<noRules;j++)
 	{
 		char next;
@@ -376,44 +430,103 @@ void findfollow(int NT1,int noRules,int noNT)
 		}
 	}	
 }
-int main()
+int main(int argc, char *argv[])
 {
-	rules[0].lhs = 'E';
-	strncpy(rules[0].rhs,"TD",2);
-	rules[0].num = 1;
-	rules[1].lhs = 'D';
-	strncpy(rules[1].rhs,"+TD",3);
+	check_validity_of_main_arguments(argc);
+	yyin = fopen(argv[1],"r");
+/*
+ * Grammar:
+ * 		0	D  -> w(C)bSz						
+ * 		1	C  -> iXE 
+ *		2	X  -> q
+ *		3	X  -> v									
+ * 		4	S  -> i=E;S 
+ *		5	S  -> e								
+ * 		6	E  -> TR											
+ *		7	R -> +TR
+ *		8	R -> e 								
+ * 		9	T  -> FH 												
+ *		10	H -> *FH
+ *		11	H -> e 						
+ * 		12	F  -> (E)
+ *		13	F  -> i
+ *		14	F  -> n 									
+ */		
+	rules[0].lhs = 'D';
+	strncpy(rules[0].rhs, "w(C)bSz", 7);
+	rules[0].num = 6;
+
+	rules[1].lhs = 'C';
+	strncpy(rules[1].rhs, "iXE", 3);
 	rules[1].num = 2;
-	rules[2].lhs = 'D';
-	strncpy(rules[2].rhs,"e",1);
+
+	rules[2].lhs = 'X';
+	strncpy(rules[2].rhs, "q", 1);
 	rules[2].num = 0;
-	rules[3].lhs = 'T';
-	strncpy(rules[3].rhs,"FU",2);
-	rules[3].num = 1;
-	rules[4].lhs = 'U';
-	strncpy(rules[4].rhs,"*FU",3);
-	rules[4].num = 2;
-	rules[5].lhs = 'U';
-	strncpy(rules[5].rhs,"e",1);
+
+	rules[3].lhs = 'X';
+	strncpy(rules[3].rhs, "v", 1);
+	rules[3].num = 0;
+
+	rules[4].lhs = 'S';
+	strncpy(rules[4].rhs, "i=E;S", 5);
+	rules[4].num = 4;
+
+	rules[5].lhs = 'S';
+	strncpy(rules[5].rhs, "e", 1);
 	rules[5].num = 0;
-	rules[6].lhs = 'F';
-	strncpy(rules[6].rhs,"(E)",3);
-	rules[6].num = 2;
-	rules[7].lhs = 'F';
-	strncpy(rules[7].rhs,"i",1);
-	rules[7].num = 0;
+
+	rules[6].lhs = 'E';
+	strncpy(rules[6].rhs, "TR", 2);
+	rules[6].num = 1;
+
+	rules[7].lhs = 'R';
+	strncpy(rules[7].rhs, "+TR", 3);
+	rules[7].num = 2;
+
+	rules[8].lhs = 'R';
+	strncpy(rules[8].rhs, "e", 1);
+	rules[8].num = 0;
+
+	rules[9].lhs = 'T';
+	strncpy(rules[9].rhs, "FH", 2);
+	rules[9].num = 1;
+
+	rules[10].lhs = 'H';
+	strncpy(rules[10].rhs, "*FH", 3);
+	rules[10].num = 2;
+
+	rules[11].lhs = 'H';
+	strncpy(rules[11].rhs, "e", 1);
+	rules[11].num = 0;
+
+	rules[12].lhs = 'F';
+	strncpy(rules[12].rhs, "(E)", 3);
+	rules[12].num = 2;
+
+	rules[13].lhs = 'F';
+	strncpy(rules[13].rhs, "i", 1);
+	rules[13].num = 0;
+
+	rules[14].lhs = 'F';
+	strncpy(rules[14].rhs, "n", 1);
+	rules[14].num = 0;
+
 
 	int i,j,k=0;
-	int noRules=8;
+	int noRules=15;
 	char NT,NT1,NT2;
-	printf("Rules. . .\n");
+	printf("\n");
+	printf("Rule   \t\tRule no.\n");
 	for(i=0;i<noRules;i++)
 	{
-		printf("%c\t->\t",rules[i].lhs);
+		printf("%c   ->\t",rules[i].lhs);
 		for(j=0;j<(rules[i].num)+1;j++)
+		{
 			printf("%c",rules[i].rhs[j]);
-		printf("\t%d\n",rules[i].num);
-	}
+		}
+		printf("\t%d\n",i);
+	}	
 	//nonTerminal calc
 	char arr[noRules];
 	char ch;
@@ -425,7 +538,7 @@ int main()
 		else if(inarr(arr,ch,noRules))
 			i++;
 	}
-	printf("\n\n\n");
+
 	for(i=0;i<k;i++)
 	{
 		firsts[i].c=arr[i];
@@ -435,7 +548,9 @@ int main()
 	noNT = k;
 	char nonTerm[k];
 	for(i=0;i<k;i++)
+	{
 		nonTerm[i]=arr[i];
+	}
 	//term calc
 	char term[40];
 	k=0;
@@ -458,15 +573,18 @@ int main()
 	term[k++]='$';
 	noT = k;
 	//printing non term and term. . .		
-	printf("Terminals are. . .\n");
+	printf("\nTerminals are:\t\t");
 	for(i=0;i<noT;i++)
+	{
 		printf("%c\t",term[i]);
-	printf("\nNon-Terminals are. . .\n");
+	}
+	printf("\nNon-Terminals are:\t");
 	for(i=0;i<noNT;i++)
+	{
 		printf("%c\t",nonTerm[i]);
+	}
 
 	//first set calculation
-	printf("\n\n");
 	for(i=0;i<noRules;i++)
 	{
 		char first=0;
@@ -478,8 +596,10 @@ int main()
 		{
 			NT = rules[i].lhs;			
 			for(j=0;j<noNT;j++)
+			{
 				if(firsts[j].c==NT)
 				break;
+			}
 			if(!isInFirSet(NT,first,noNT))			
 			{
 				index = firsts[j].len;
@@ -489,11 +609,6 @@ int main()
 		}
 
 	}
-	/*printf("first set. . .\n");
-	for(i=0;i<noNT;i++)
-	{
-		printf("%c\tlen=%d\t%s\n",firsts[i].c,firsts[i].len,firsts[i].set);
-	}*/	
 	
 	for(i=0;i<noRules;i++)
 	{
@@ -506,27 +621,12 @@ int main()
 		{
 			NT1 = rules[i].lhs;
 			add2first(NT1,noRules,noNT,rules[i].num,i);
-			//printf("\n");
-			//add2first(NT1,NT2,noRules,noNT);
 		}
 	}
-	/*
-	for(i=0;i<noRules;i++)
-	{
-		char first=0;		
-		first = rules[i].rhs[0];
-		if(isNonTerminal(first,noRules))
-		{
-			NT1 = rules[i].lhs;
-			NT2 = rules[i].rhs[0];
-			printf("\n");
-			add2first(NT1,NT2,noRules,noNT);
-		}
-	}*/
-	printf("first set. . .\n");
+	printf("\n\nFIRST SET: \n");
 	for(i=0;i<noNT;i++)
 	{
-		printf("%c\tlen=%d\t%s\n",firsts[i].c,firsts[i].len,firsts[i].set);
+		printf("%c  :  %s\n",firsts[i].c,firsts[i].set);
 	}	
 	//follow set calculation
 	add2follow('$',follows[0].c,noNT);
@@ -534,22 +634,22 @@ int main()
 	{
 		NT1 = follows[i].c;
 		findfollow(NT1,noRules,noNT);
-		printf("\n");
 	}
-	printf("follow set. . .\n");
+	printf("\nFOLLOW SET: \n");
 	for(i=0;i<noNT;i++)
 	{
-		printf("%c\tlen=%d\t%s\n",follows[i].c,follows[i].len,follows[i].set);
+		printf("%c  :  %s\n",follows[i].c,follows[i].set);
 	}
 	//terminals
-	printf("\n\n");
 	
 	//making table for predictive parsing
 	int TABLE[noNT][noT];
 	int Tind,NTind;
 	for(i=0;i<noNT;i++)
+	{
 		for(j=0;j<noT;j++)
 			TABLE[i][j]=-1;
+	}
 	for(i=0;i<noRules;i++) 
 	{
 		NT = rules[i].lhs;
@@ -558,20 +658,20 @@ int main()
 		{
 			Tind = charIndexT(NT1,term,noT);
 			NTind = charIndexNT(NT,nonTerm,noT);		
-			//printf("\n%c(%d),%c(%d),i=%d",NT,NTind,NT1,Tind,i);
 			if((Tind!=-1)&&(NTind!=-1))
 				TABLE[NTind][Tind] = i;
 			if(NT1=='e')
 			{
 				for(j=0;j<noNT;j++)
+				{
 					if(follows[j].c==NT)
 						break;
+				}
 				for(k=0;k<follows[j].len;k++)
 				{
 					ch = follows[j].set[k];
 					Tind = charIndexT(ch,term,noT);
 					NTind = charIndexNT(NT,nonTerm,noT);		
-					//printf("\n%c,%c",NT,ch);
 					if((Tind!=-1)&&(NTind!=-1)&&(TABLE[NTind][Tind]==-1))
 						TABLE[NTind][Tind] = i;
 				}
@@ -580,29 +680,30 @@ int main()
 		else if(isNonTerminal(NT1,noRules))
 		{
 			for(j=0;j<noNT;j++)
+			{
 				if(firsts[j].c==NT1)
 					break;
-			//printf("\n>>%c\n",firsts[j].c);
+			}
 			for(k=0;k<firsts[j].len;k++)
 			{
 				ch = firsts[j].set[k];
 				Tind = charIndexT(ch,term,noT);
 				NTind = charIndexNT(NT,nonTerm,noT);		
-				//printf("\n%c,%c",NT,ch);
 				if((Tind!=-1)&&(NTind!=-1))
 					TABLE[NTind][Tind] = i;
 			}
 			if(isInFirSet(NT1,'e',noNT))
 			{
 				for(j=0;j<noNT;j++)
+				{
 					if(follows[j].c==NT)
 						break;
+				}
 				for(k=0;k<follows[j].len;k++)
 				{
 					ch = follows[j].set[k];
 					Tind = charIndexT(ch,term,noT);
 					NTind = charIndexNT(NT,nonTerm,noT);		
-					//printf("\n%c,%c",NT,ch);
 					if((Tind!=-1)&&(NTind!=-1)&&(TABLE[NTind][Tind]==-1))
 						TABLE[NTind][Tind] = i;
 				}	
@@ -610,42 +711,32 @@ int main()
 		}
 	}
 	printTable(TABLE,term,nonTerm);
-	printf("\nRule numbers reference. . .\n");
-	printf("Rule\tRule no.\n");
-	for(i=0;i<noRules;i++)
-	{
-		printf("%c->",rules[i].lhs);
-		for(j=0;j<(rules[i].num)+1;j++)
-			printf("%c",rules[i].rhs[j]);
-		printf("\t%d\n",i);
-	}	
 	printf("\n");
+	printf("Stack Record:");
 	//make parser
-	for(i=0;i<20;i++)
+	for(i=0;i<STK_SIZE;i++)
 	{
 		STK[i]='\0';
 	}
 	//printStack();
-	char input[20];
-	printf("\nEnter input to check:");
-	scanf("%s",input);
-	printf("\n");
 	k=0;
 	char ip,stkTop,temp;
 	int rule_no;
 	int flag = 0;
-	ip = input[k];
-	push('E');
+	ip = yylex();
+	TOP = -1;
+	push('D');
 	while(1)
 	{
 		if(TOP==-1&&ip=='$')
 		{
-			printf("\nSuccessfully parsed!");
+			printf("\n\nParsed Successfully :-)");
 			break;
-		}
-		else if((TOP==-1&&ip!='$'))
-		{
-			printf("\nInput not successfully parsed!");
+		} else if((TOP==-1&&ip!='$')) {
+			printf("\n\nParsed input CAN NOT be. Yes, hrrmmm.!");
+			break;
+		} else if(ip == TOK_INVALID){
+			printf("\n\nParsed input CAN NOT be. Yes, hrrmmm.!");
 			break;
 		}		
 		stkTop = STK[TOP];
@@ -664,7 +755,7 @@ int main()
 			}
 			if(flag==0)
 			{
-				printf("\nInput not successfully parsed!");
+				printf("\n\nParsed input CAN NOT be. Yes, hrrmmm.!");
 				break;
 			}				
 		}
@@ -680,12 +771,15 @@ int main()
 			{			
 				rule_no = TABLE[NTind][Tind];
 				pop();
-			}
-			else
+			} else {
+				printf("\n\nParsed input CAN NOT be. Yes, hrrmmm.!");
 				break;
+			}
 			for(i=0;i<noRules;i++)
+			{
 				if(i==rule_no)
 					break;
+			}
 			for(j=rules[i].num;j>=0;j--)
 			{
 				temp = rules[i].rhs[j];
@@ -697,13 +791,18 @@ int main()
 			if(stkTop==ip)
 			{
 				pop();
-				ip = input[++k];
+				ip = yylex();
+			} else {
+				if(stkTop != 'e') 
+				{
+					printf("\n\nParsed input CAN NOT be. Yes, hrrmmm.!");
+					break;
+				}
 			}
 		}
-		printf("\nSTACK:%s<-TOP\t\tcurrent-Input-sym:%c",STK,ip);
+		printf("\n  |%s<-TOP\t\tCurrent Input: %c",STK,ip);
 	}
 
-	printStack();
-	printf("\n"); 
+	printf("\n\n"); 
 	return 0;
 }
