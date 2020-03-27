@@ -1,7 +1,48 @@
 /*
  * Copyright (c) Adil Bin Bhutto. All rights reserved.
- * Description: 
- */
+ * Description: Implement an LL(1) parser that uses the LL(1) parsing table you have defined in the previous exercise.
+ * Sample:
+ *
+ *			while ( condition ) 
+ *			begin 
+ *				    statement ; 
+ *				        : 
+ *			end
+ *
+ *
+ * Grammar:
+ * 			D  -> w(C)bSe							
+ * 			C  -> iXE
+ *			X  -> q											
+ * 			X  -> v
+ *			S  -> i=E;S									
+ * 			S  -> e
+ *			E  -> TR												
+ *			R  -> +TR 									
+ * 			R  -> e
+ *			T  -> FH 												
+ *			H  -> *FH 									
+ * 			H  -> e
+ *			F  -> (E)
+ *			F  -> i
+ *			F  -> n 										
+ *														
+ * Termianls:	w, while			Non-Terminals:	D , Starting Symbol
+ *				b, begin							C , Condition 
+ *				z, end								S , Statement
+ *				q, ==								E , Arithmatic Expression
+ *				v, !=								R , Intermediate Term
+ *				i, identifier						T , Intermediate Term
+ *				=, assignment						H , Intermediate Term
+ *				;, semicolon						F , Intermediate Term						
+ *				n, number
+ *				+, addition
+ *				*, multiplication
+ *				-, subtraction
+ *				(, open brace
+ *				), close brace
+ *				e, Epsilon								
+ */	
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -233,7 +274,6 @@ void copyfollowfollow(char NT1,char NT2,int noNT)
 void add2first(char NT1,int noRules,int noNT,int rhslen,int ruleno)
 {
 	rhslen = rhslen+1;
-	//printf("\nNT=%c,ruleno=%d,rhslen=%d\t",NT1,ruleno,rhslen);
 	int i=0,k=0;
 	int j,index;
 	char NT2;
@@ -242,7 +282,6 @@ void add2first(char NT1,int noRules,int noNT,int rhslen,int ruleno)
 			char NT2=rules[ruleno].rhs[k];
 			if(!isNonTerminal(NT2,noRules))
 			{
-				//add that terminal to NT1
 				for(j=0;j<noNT;j++)
 				{
 					if(firsts[j].c==NT1)
@@ -255,7 +294,6 @@ void add2first(char NT1,int noRules,int noNT,int rhslen,int ruleno)
 					firsts[j].len++;
 					return;
 				}
-				//printf("\n");			
 			}
 			else if(isNonTerminal(NT2,noRules))
 			{
@@ -265,7 +303,6 @@ void add2first(char NT1,int noRules,int noNT,int rhslen,int ruleno)
 					if((rules[j].lhs==NT2)&&isNonTerminal(rules[j].rhs[0],noRules))
 					{
 						temp = 1;
-						//printf("\n%c\t%s",rules[j].lhs,rules[j].rhs);
 						add2first(NT2,noRules,noNT,rules[j].num,j);	
 						copyfirst(NT1,NT2,noRules);	
 					}
@@ -274,11 +311,9 @@ void add2first(char NT1,int noRules,int noNT,int rhslen,int ruleno)
 				{
 					copyfirst(NT1,NT2,noRules);
 				}
-				//printf("\n");	
 			}
 			if((k==rhslen-1)&&isInFirSet(NT2,'e',noNT))
 			{
-				//printf("\nk=%d,NT1=%c,NT2=%c\n",k,NT1,NT2);
 				int m;
 				int index;
 				for(m=0;m<noNT;m++)
@@ -294,14 +329,13 @@ void add2first(char NT1,int noRules,int noNT,int rhslen,int ruleno)
 				}
 				return;
 			}
-			else if(isInFirSet(NT2,'e',noNT)&&(isNonTerminal(NT2,noRules)))
-			{ //printf("JJJJJ\n");
-				k++;}
-			else {//printf("MMMMM\n");
-				return;}
+			else if(isInFirSet(NT2,'e',noNT)&&(isNonTerminal(NT2,noRules))) {
+				k++;
+			} else {
+				return;
+			}
 			
 	}
-	//printf("\n");
 	
 }
 void add2follow(char ch,char NT1,int noNT)
@@ -628,7 +662,7 @@ int main(int argc, char *argv[])
 	{
 		printf("%c  :  %s\n",firsts[i].c,firsts[i].set);
 	}	
-	//follow set calculation
+	//Construction of Follow Set
 	add2follow('$',follows[0].c,noNT);
 	for(i=0;i<noNT;i++)
 	{
@@ -640,9 +674,8 @@ int main(int argc, char *argv[])
 	{
 		printf("%c  :  %s\n",follows[i].c,follows[i].set);
 	}
-	//terminals
 	
-	//making table for predictive parsing
+	//Construction of Predictive Parsing 
 	int TABLE[noNT][noT];
 	int Tind,NTind;
 	for(i=0;i<noNT;i++)
@@ -713,16 +746,19 @@ int main(int argc, char *argv[])
 	printTable(TABLE,term,nonTerm);
 	printf("\n");
 	printf("Stack Record:");
-	//make parser
+	
+
+	//Parser Implementation
 	for(i=0;i<STK_SIZE;i++)
 	{
 		STK[i]='\0';
 	}
-	//printStack();
+
 	k=0;
 	char ip,stkTop,temp;
 	int rule_no;
 	int flag = 0;
+	//Lexical Analyser Function call to give the next token
 	ip = yylex();
 	TOP = -1;
 	push('D');
