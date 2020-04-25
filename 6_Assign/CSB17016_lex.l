@@ -16,9 +16,9 @@
 "("						{ return TOK_OPEN_PARAN; }
 ")"						{ return TOK_CLOSE_PARAN;}
 ";"						{ return TOK_SEMICOLON;	 }
-[ \t\n]					{ ; }
 "$"						{ return TOK_EOF; }
-.						{ return TOK_INVALID; }
+[ \t\n]					{ ; }
+[.]						{ return TOK_INVALID; }
 %%
 
 int yywrap(void)
