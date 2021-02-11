@@ -62,8 +62,17 @@
 
 
 /* Copy the first part of user declarations.  */
+#line 4 "csb17016_CFG.y" /* yacc.c:339  */
 
-#line 67 "bison.tab.c" /* yacc.c:339  */
+void Initialize();
+void GenerateCondition_code();
+void TerminateLoop();
+void push();
+void GenerateCompare_code();
+void GenerateAssignment_code();
+void GenerateCode();
+
+#line 76 "csb17016_CFG.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -123,7 +132,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 127 "bison.tab.c" /* yacc.c:358  */
+#line 136 "csb17016_CFG.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -421,9 +430,9 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,     8,     8,     8,     8,     9,     9,    10,    11,    12,
-      13,    14,    15,    17,    17,    17,    17,    18,    20,    20,
-      21,    21,    22,    22,    23,    23,    24,    25,    26
+       0,    21,    21,    21,    21,    22,    22,    23,    24,    25,
+      26,    27,    28,    30,    30,    30,    30,    31,    33,    33,
+      34,    34,    35,    35,    36,    36,    37,    38,    39
 };
 #endif
 
@@ -1218,151 +1227,151 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 8 "bison.y" /* yacc.c:1646  */
+#line 21 "csb17016_CFG.y" /* yacc.c:1646  */
     {Initialize();}
-#line 1224 "bison.tab.c" /* yacc.c:1646  */
+#line 1233 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 8 "bison.y" /* yacc.c:1646  */
+#line 21 "csb17016_CFG.y" /* yacc.c:1646  */
     {GenerateCondition_code();}
-#line 1230 "bison.tab.c" /* yacc.c:1646  */
+#line 1239 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 8 "bison.y" /* yacc.c:1646  */
+#line 21 "csb17016_CFG.y" /* yacc.c:1646  */
     {TerminateLoop();}
-#line 1236 "bison.tab.c" /* yacc.c:1646  */
+#line 1245 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 9 "bison.y" /* yacc.c:1646  */
+#line 22 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1242 "bison.tab.c" /* yacc.c:1646  */
+#line 1251 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 9 "bison.y" /* yacc.c:1646  */
+#line 22 "csb17016_CFG.y" /* yacc.c:1646  */
     {GenerateCompare_code();}
-#line 1248 "bison.tab.c" /* yacc.c:1646  */
+#line 1257 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 10 "bison.y" /* yacc.c:1646  */
+#line 23 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1254 "bison.tab.c" /* yacc.c:1646  */
+#line 1263 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 11 "bison.y" /* yacc.c:1646  */
+#line 24 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1260 "bison.tab.c" /* yacc.c:1646  */
+#line 1269 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 12 "bison.y" /* yacc.c:1646  */
+#line 25 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1266 "bison.tab.c" /* yacc.c:1646  */
+#line 1275 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 13 "bison.y" /* yacc.c:1646  */
+#line 26 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1272 "bison.tab.c" /* yacc.c:1646  */
+#line 1281 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 14 "bison.y" /* yacc.c:1646  */
+#line 27 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1278 "bison.tab.c" /* yacc.c:1646  */
+#line 1287 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 15 "bison.y" /* yacc.c:1646  */
+#line 28 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1284 "bison.tab.c" /* yacc.c:1646  */
+#line 1293 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 17 "bison.y" /* yacc.c:1646  */
+#line 30 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1290 "bison.tab.c" /* yacc.c:1646  */
+#line 1299 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 17 "bison.y" /* yacc.c:1646  */
+#line 30 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1296 "bison.tab.c" /* yacc.c:1646  */
+#line 1305 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 17 "bison.y" /* yacc.c:1646  */
+#line 30 "csb17016_CFG.y" /* yacc.c:1646  */
     {GenerateAssignment_code();}
-#line 1302 "bison.tab.c" /* yacc.c:1646  */
+#line 1311 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 20 "bison.y" /* yacc.c:1646  */
+#line 33 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1308 "bison.tab.c" /* yacc.c:1646  */
+#line 1317 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 20 "bison.y" /* yacc.c:1646  */
+#line 33 "csb17016_CFG.y" /* yacc.c:1646  */
     {GenerateCode();}
-#line 1314 "bison.tab.c" /* yacc.c:1646  */
+#line 1323 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 21 "bison.y" /* yacc.c:1646  */
+#line 34 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1320 "bison.tab.c" /* yacc.c:1646  */
+#line 1329 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 21 "bison.y" /* yacc.c:1646  */
+#line 34 "csb17016_CFG.y" /* yacc.c:1646  */
     {GenerateCode();}
-#line 1326 "bison.tab.c" /* yacc.c:1646  */
+#line 1335 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 22 "bison.y" /* yacc.c:1646  */
+#line 35 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1332 "bison.tab.c" /* yacc.c:1646  */
+#line 1341 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 22 "bison.y" /* yacc.c:1646  */
+#line 35 "csb17016_CFG.y" /* yacc.c:1646  */
     {GenerateCode();}
-#line 1338 "bison.tab.c" /* yacc.c:1646  */
+#line 1347 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 23 "bison.y" /* yacc.c:1646  */
+#line 36 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1344 "bison.tab.c" /* yacc.c:1646  */
+#line 1353 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 23 "bison.y" /* yacc.c:1646  */
+#line 36 "csb17016_CFG.y" /* yacc.c:1646  */
     {GenerateCode();}
-#line 1350 "bison.tab.c" /* yacc.c:1646  */
+#line 1359 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 25 "bison.y" /* yacc.c:1646  */
+#line 38 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1356 "bison.tab.c" /* yacc.c:1646  */
+#line 1365 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 26 "bison.y" /* yacc.c:1646  */
+#line 39 "csb17016_CFG.y" /* yacc.c:1646  */
     {push();}
-#line 1362 "bison.tab.c" /* yacc.c:1646  */
+#line 1371 "csb17016_CFG.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1366 "bison.tab.c" /* yacc.c:1646  */
+#line 1375 "csb17016_CFG.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1590,7 +1599,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 29 "bison.y" /* yacc.c:1906  */
+#line 42 "csb17016_CFG.y" /* yacc.c:1906  */
 
 
 #include "lex.yy.c"

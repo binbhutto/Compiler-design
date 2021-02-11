@@ -375,7 +375,7 @@ static char *yy_last_accepting_cpos;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "lex.l"
+#line 1 "csb17016_CFG.l"
 #define INITIAL 0
 #line 381 "lex.yy.c"
 
@@ -539,7 +539,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 2 "lex.l"
+#line 2 "csb17016_CFG.l"
 
 #line 545 "lex.yy.c"
 
@@ -626,67 +626,67 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 3 "lex.l"
+#line 3 "csb17016_CFG.l"
 { return WHILE; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 4 "lex.l"
+#line 4 "csb17016_CFG.l"
 { return ID; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 5 "lex.l"
+#line 5 "csb17016_CFG.l"
 { return NUM; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 6 "lex.l"
+#line 6 "csb17016_CFG.l"
 { return EQUAL; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 7 "lex.l"
+#line 7 "csb17016_CFG.l"
 { return NOT_EQUAL; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 8 "lex.l"
+#line 8 "csb17016_CFG.l"
 { return LT_EQUAL; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 9 "lex.l"
+#line 9 "csb17016_CFG.l"
 { return GT_EQUAL; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 10 "lex.l"
+#line 10 "csb17016_CFG.l"
 { return LT; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 11 "lex.l"
+#line 11 "csb17016_CFG.l"
 { return GT; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 12 "lex.l"
+#line 12 "csb17016_CFG.l"
 { yyterminate(); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 13 "lex.l"
+#line 13 "csb17016_CFG.l"
 { ; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 14 "lex.l"
+#line 14 "csb17016_CFG.l"
 { return yytext[0]; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 15 "lex.l"
+#line 15 "csb17016_CFG.l"
 ECHO;
 	YY_BREAK
 #line 693 "lex.yy.c"
@@ -1579,5 +1579,5 @@ int main()
 	return 0;
 	}
 #endif
-#line 15 "lex.l"
+#line 15 "csb17016_CFG.l"
 
